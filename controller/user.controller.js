@@ -72,11 +72,37 @@ const getTotalData = async (req, res, next) => {
     next(error);
   }
 };
+const getAgeRange = async (req, res, next) => {
+  try {
+    const totalData = await User.aggregate([
+      {
+        $bucket: {
+          groupBy: "$age",
+          boundaries: [ 0,30,40 ],
+          default: "Greater then 40",
+          output: {
+            count:{$sum:1},
+            names:{$push:"$name"}
+          }
+        }
+        
+      },
+      {$project: {
+        AgeRange : "$_id",
+        names:1
+      }}
+    ]);
+
+    res.status(200).json({ message: "Success", data: totalData});
+  } catch (error) {
+    next(error);
+  }
+};
 
 
 // Export all functions as an object
 module.exports = {
   insertMany,
   groupByGender,
-  getTotalCount,getTotalData,groupByGender
+  getTotalCount,getTotalData,getAgeRange,groupByGender
 };

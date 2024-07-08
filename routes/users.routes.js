@@ -1,6 +1,6 @@
 const express = require("express");
 const {
-  groupByGender ,getTotalCount,getTotalData
+  groupByGender ,getTotalCount,getAgeRange,getTotalData
 } = require("../controller/user.controller.js");
 const router = express.Router();
 
@@ -9,6 +9,7 @@ const router = express.Router();
 router.get("/groupByGender", groupByGender);
 router.get("/getTotalCount", getTotalCount);
 router.get("/getTotalData", getTotalData);
+router.get("/getAgeRange", getAgeRange);
 
 
 module.exports = router;

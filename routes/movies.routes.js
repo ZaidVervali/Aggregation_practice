@@ -1,11 +1,25 @@
 const express = require("express");
 const {
-  getAllStudents,
-
+  getAllMovies,
+  getMoviesByRange,
+  getMoviesAfterYear,
+  getMovieCountByYear,
+  getTopNMovies,
+  getMoviesWithDirectors,
+  getAverageReleaseYear,
+  getMoviesGroupedByDecade
 } = require("../controller/movies.controller");
+
 const router = express.Router();
 
-router.get("/getAllStudents", getAllStudents);
-
+// Define the routes and map them to the corresponding controller functions
+router.get("/getAllMovies", getAllMovies);
+router.get("/getMoviesByRange", getMoviesByRange);
+router.get("/getMoviesAfterYear/:year", getMoviesAfterYear); // Example: /getMoviesAfterYear/2000
+router.get("/getMovieCountByYear", getMovieCountByYear);
+router.get("/getTopNMovies/:limit", getTopNMovies); // Example: /getTopNMovies/5
+router.get("/getMoviesWithDirectors", getMoviesWithDirectors);
+router.get("/getAverageReleaseYear", getAverageReleaseYear);
+router.get("/getMoviesGroupedByDecade", getMoviesGroupedByDecade);
 
 module.exports = router;

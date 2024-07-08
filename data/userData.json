@@ -1,0 +1,73 @@
+[
+    {
+      "name": "Alice Johnson",
+      "age": 30,
+      "email": "alice.johnson@example.com",
+      "gender": "Female",
+      "address": "123 Maple Street"
+    },
+    {
+      "name": "Bob Smith",
+      "age": 24,
+      "email": "bob.smith@example.com",
+      "gender": "Male",
+      "address": "456 Oak Street"
+    },
+    {
+      "name": "Carol Williams",
+      "age": 28,
+      "email": "carol.williams@example.com",
+      "gender": "Female",
+      "address": "789 Pine Street"
+    },
+    {
+      "name": "David Brown",
+      "age": 35,
+      "email": "david.brown@example.com",
+      "gender": "Male",
+      "address": "321 Elm Street"
+    },
+    {
+      "name": "Eva Davis",
+      "age": 22,
+      "email": "eva.davis@example.com",
+      "gender": "Female",
+      "address": "654 Birch Street"
+    },
+    {
+      "name": "Frank Miller",
+      "age": 40,
+      "email": "frank.miller@example.com",
+      "gender": "Male",
+      "address": "987 Cedar Street"
+    },
+    {
+      "name": "Grace Wilson",
+      "age": 29,
+      "email": "grace.wilson@example.com",
+      "gender": "Female",
+      "address": "246 Spruce Street"
+    },
+    {
+      "name": "Henry Moore",
+      "age": 32,
+      "email": "henry.moore@example.com",
+      "gender": "Male",
+      "address": "135 Fir Street"
+    },
+    {
+      "name": "Ivy Taylor",
+      "age": 27,
+      "email": "ivy.taylor@example.com",
+      "gender": "Female",
+      "address": "753 Aspen Street"
+    },
+    {
+      "name": "Jack Anderson",
+      "age": 31,
+      "email": "jack.anderson@example.com",
+      "gender": "Male",
+      "address": "159 Willow Street"
+    }
+  ]
+  

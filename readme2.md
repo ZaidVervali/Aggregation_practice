@@ -28,3 +28,20 @@
 ]
 ```
 - unset and project both can be used to remove the field
+
+
+```
+[
+   {
+        $bucket: {
+           groupBy: "$yearOfRelease", // Correct the field name
+           boundaries: [1990, 2010,2050], // Define bucket boundaries
+           default: "not in range", // Correct the typo in "not in range"
+           output: {
+             countBy: { $sum: 1 }, // Count the number of documents in each bucket
+             names: { $push: "$name" } // Push the names into an array
+           }
+         }
+      }
+]
+```

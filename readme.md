@@ -34,6 +34,34 @@ ref:https://www.mongodb.com/docs/manual/reference/operator/update/push/
 - The $bucket stage has a limit of 100 megabytes of RAM
 Ref for Agg pipeline limit: https://www.mongodb.com/docs/manual/core/aggregation-pipeline-limits/
 
-``` we cannot use $sum without $group ```
+``` we can't use $sum without $group ```
 
 
+**$set**
+- appends new fields to existing documents. You can include one or more $set stages in an aggregation operation.
+
+- *$set* accepts the embedding of objects where you can set a value to an aggregation expression or to an empty object. For example, the following nested objects are accepted:
+    
+ ```
+ db.animals.aggregate( [
+  { $set: { cats: 20 } }
+] )
+---------------------------------
+ db.scores.aggregate( [
+   {
+     $set: {
+        totalHomework: { $sum: "$homework" },
+        totalQuiz: { $sum: "$quiz" }
+     }
+   },
+   {
+     $set: {
+        totalScore: { $add: [ "$totalHomework", "$totalQuiz", "$extraCredit" ] } }
+   }
+] )
+ ```
+
+**$facet** 
+- It represent the outout of prev stage with the new aspect according to the different facent condition
+- It apply additional filters and categorize to produce the output 
+- 

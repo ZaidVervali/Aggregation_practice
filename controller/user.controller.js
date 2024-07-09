@@ -1,4 +1,4 @@
-const User = require("../models/user.model.js");
+const User = require("../models/student.model.js");
 
 const insertMany = async (req, res, next) => {
   try {

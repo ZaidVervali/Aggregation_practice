@@ -29,7 +29,7 @@ const getMoviesByRange = async (req, res, next) => {
           default: "not in range",
           output: {
             countBy: { $sum: 1 },
-            names: { $push: "$name" }
+            names: { $push: ["$name", "$year"] }
           }
         }
       }
@@ -64,8 +64,27 @@ const getMovieCountByYear = async (req, res, next) => {
           count: { $sum: 1 }
         }
       },
-      { $sort: { _id: 1 } } // Sort by year of release
+      {
+        $sort: { _id: 1 }
+      },
+      {
+        $group: {
+          _id: null,
+          data: { $push: { yearOfRelease: "$_id", count: "$count" } },
+          totalCount: { $sum: "$count" }
+        }
+      },
+      {
+        $project: {
+          _id: 0,
+          data: 1,
+          totalCount: 1
+        }
+      }
     ]);
+    
+    res.status(200).json({ message: "Success", data: data });
+    
     res.status(200).json({ message: "Success", data: data });
   } catch (error) {
     next(error);
@@ -145,6 +164,52 @@ const getMoviesGroupedByDecade = async (req, res, next) => {
   }
 };
 
+const getDetailedMoviesData = async (req, res, next) => {
+  try {
+    const data = await Movie.aggregate([
+      {
+        $facet: {
+          byGenre: [
+            { $group: { _id: "$genre", movies: { $push: { name: "$name", yearOfRelease: "$yearOfRelease" } }, count: { $sum: 1 } } },
+            { $sort: { _id: 1 } }
+          ],
+          byDirector: [
+            { $lookup: { from: 'directors', localField: 'directorId', foreignField: '_id', as: 'directorDetails' } },
+            { $unwind: "$directorDetails" },
+            { $group: { _id: "$directorDetails.name", movies: { $push: { name: "$name", yearOfRelease: "$yearOfRelease" } }, count: { $sum: 1 } } },
+            { $sort: { _id: 1 } }
+          ],
+          byYear: [
+            { $bucket: { groupBy: "$yearOfRelease", boundaries: [1990, 2000, 2010, 2020, 2030], default: "other", output: { movies: { $push: "$name" }, count: { $sum: 1 } } } }
+          ]
+        }
+      },
+      {
+        //  used as a "As" alias 
+        $set: {
+          statistics: {
+            totalMovies: { $size: "$byYear" },
+            averageReleaseYear: { $avg: "$byYear._id" }
+          }
+        }
+      },
+      {
+        $project: {
+          byGenre: 1,
+          byDirector: 1,
+          byYear: 1,
+          statistics: 1
+        }
+      }
+    ]);
+
+    res.status(200).json({ message: "Success", data: data });
+  } catch (error) {
+    next(error);
+  }
+};
+
+
 module.exports = {
   getAllMovies,
   getMoviesByRange,
@@ -153,5 +218,6 @@ module.exports = {
   getTopNMovies,
   getMoviesWithDirectors,
   getAverageReleaseYear,
-  getMoviesGroupedByDecade
+  getMoviesGroupedByDecade,
+  getDetailedMoviesData
 };

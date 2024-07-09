@@ -7,7 +7,8 @@ const {
   getTopNMovies,
   getMoviesWithDirectors,
   getAverageReleaseYear,
-  getMoviesGroupedByDecade
+  getMoviesGroupedByDecade,
+  getDetailedMoviesData
 } = require("../controller/movies.controller");
 
 const router = express.Router();
@@ -21,5 +22,6 @@ router.get("/getTopNMovies/:limit", getTopNMovies); // Example: /getTopNMovies/5
 router.get("/getMoviesWithDirectors", getMoviesWithDirectors);
 router.get("/getAverageReleaseYear", getAverageReleaseYear);
 router.get("/getMoviesGroupedByDecade", getMoviesGroupedByDecade);
+router.get("/getDetailedMoviesData", getDetailedMoviesData);
 
 module.exports = router;

@@ -36,6 +36,7 @@ Ref for Agg pipeline limit: https://www.mongodb.com/docs/manual/core/aggregation
 
 ``` we can't use $sum without $group ```
 
+**{09/07/2024}**
 
 **$set**
 - appends new fields to existing documents. You can include one or more $set stages in an aggregation operation.

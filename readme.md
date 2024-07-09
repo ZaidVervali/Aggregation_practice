@@ -1,5 +1,7 @@
 ## Aggregation Pipeline 
 Ref : https://docs.google.com/document/d/1RnxuGi6Zp67wpiXVTW5VR6sKFjovWqi1pNyLZOnQvlg/edit?usp=sharing
+Imp Stages and operators of aggregation pipeline
+Ref : https://chatgpt.com/share/a5c5ec3b-1c3b-4255-8ded-b6e0934e37bd
 
 **{08/07/2024}**
 ##### Data Count 
